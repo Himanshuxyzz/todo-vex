@@ -3,7 +3,7 @@ import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import UserProfile from "@/components/todovex/user-profile";
 
-function page() {
+function Page() {
   const tasks = useQuery(api.tasks.get);
 
   return (
@@ -26,4 +26,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
