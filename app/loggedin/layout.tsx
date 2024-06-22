@@ -1,4 +1,4 @@
-import Providers from "../providers/providers";
+import Providers from "@/app/providers/providers";
 import { auth } from "@/auth";
 
 export default async function LoggedInLayout({
