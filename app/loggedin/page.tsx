@@ -1,28 +1,19 @@
 "use client";
-import { useQuery } from "convex/react";
-import { api } from "@/convex/_generated/api";
-import UserProfile from "@/components/todovex/user-profile";
+import MobileNav from "@/components/nav/mobile-nav";
+import SideBar from "@/components/nav/side-bar";
+import TodoList from "@/components/todos/todo-list";
 
 function Page() {
-  const tasks = useQuery(api.tasks.get);
-
   return (
-    <main className="w-full">
-      <div className="text-center mt-10 flex justify-center items-center gap-2">
-        <UserProfile />
-        <h1 className="text-3xl font-bold underline">
-          Welcome to the logged in page!
-        </h1>
+    <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
+      <SideBar />
+      <div className="flex flex-col">
+        <MobileNav />
+        <main className="flex flex-1 flex-col gap-4 p-4 lg:px-8">
+          <TodoList />
+        </main>
       </div>
-
-      <ul className="w-[3/2] border p-5 list-disc list-outside ">
-        {tasks?.map(({ _id, text }) => (
-          <li className="text-xl pl-2" key={_id}>
-            {text}
-          </li>
-        ))}
-      </ul>
-    </main>
+    </div>
   );
 }
 

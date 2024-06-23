@@ -1,3 +1,4 @@
+import { Label } from "@radix-ui/react-dropdown-menu";
 import { defineSchema, defineTable } from "convex/server";
 import { v, Validator } from "convex/values";
 
@@ -70,47 +71,51 @@ const authTables = {
     .index("credentialID", ["credentialID"]),
 };
 
+const todosSchema = {
+  userId: v.id("users"),
+  projectId: v.id("projects"),
+  labelId: v.id("labels"),
+  taskName: v.string(),
+  descripton: v.optional(v.string()),
+  // dueDate: v.string(), it will be a unix apoc time
+  dueDate: v.number(),
+  priority: v.optional(v.float64()),
+  isCompleted: v.boolean(),
+};
+
+const subTodosSchema = {
+  userId: v.id("users"),
+  projectId: v.id("projects"),
+  labelId: v.id("labels"),
+  parentId: v.id("todos"),
+  taskName: v.string(),
+  descripton: v.optional(v.string()),
+  // dueDate: v.string(), it will be a unix apoc time
+  dueDate: v.number(),
+  priority: v.optional(v.float64()),
+  isCompleted: v.boolean(),
+};
+
+const labelsSchema = {
+  userId: v.id("users"),
+  name: v.string(),
+  type: v.union(v.literal("user"), v.literal("system")),
+};
+
+const projectsSchema = {
+  userId: v.id("users"),
+  name: v.string(),
+  type: v.union(v.literal("user"), v.literal("system")),
+};
+
+const todosTables = {
+  todos: defineTable(todosSchema),
+  subTodos: defineTable(subTodosSchema),
+  labels: defineTable(labelsSchema),
+  projects: defineTable(projectsSchema),
+};
+
 export default defineSchema({
   ...authTables,
-  todos: defineTable({
-    userId: v.id("users"),
-    projectId: v.id("projects"),
-    labelId: v.id("labels"),
-    taskName: v.string(),
-    description: v.optional(v.string()),
-    dueDate: v.number(),
-    priority: v.optional(v.float64()),
-    isCompleted: v.boolean(),
-    embedding: v.optional(v.array(v.float64())),
-  }).vectorIndex("by_embedding", {
-    vectorField: "embedding",
-    dimensions: 1536,
-    filterFields: ["userId"],
-  }),
-  subTodos: defineTable({
-    userId: v.id("users"),
-    projectId: v.id("projects"),
-    labelId: v.id("labels"),
-    parentId: v.id("todos"),
-    taskName: v.string(),
-    description: v.optional(v.string()),
-    dueDate: v.number(),
-    priority: v.optional(v.float64()),
-    isCompleted: v.boolean(),
-    embedding: v.optional(v.array(v.float64())),
-  }).vectorIndex("by_embedding", {
-    vectorField: "embedding",
-    dimensions: 1536,
-    filterFields: ["userId"],
-  }),
-  labels: defineTable({
-    userId: v.union(v.id("users"), v.null()),
-    name: v.string(),
-    type: v.union(v.literal("user"), v.literal("system")),
-  }),
-  projects: defineTable({
-    userId: v.union(v.id("users"), v.null()),
-    name: v.string(),
-    type: v.union(v.literal("user"), v.literal("system")),
-  }),
+  ...todosTables,
 });
