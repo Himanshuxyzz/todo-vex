@@ -145,7 +145,7 @@ function callMutation<Mutation extends FunctionReference<"mutation">>(
 ) {
   return fetchMutation(mutation, addSecret(args) as any);
 }
-// console.log(process.env.CONVEX_AUTH_ADAPTER_SECRET);
+
 if (process.env.CONVEX_AUTH_ADAPTER_SECRET === undefined) {
   throw new Error("Missing CONVEX_AUTH_ADAPTER_SECRET environment variable");
 }

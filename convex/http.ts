@@ -9,10 +9,10 @@ http.route({
   handler: httpAction(async () => {
     return new Response(
       JSON.stringify({
-        issuer: process.env.CONVEX_SITE_URL,
-        jwks_uri: process.env.CONVEX_SITE_URL + "/.well-known/jwks.json",
+        issuer: process.env.NEXT_PUBLIC_CONVEX_URL,
+        jwks_uri: process.env.NEXT_PUBLIC_CONVEX_URL + "/.well-known/jwks.json",
         authorization_endpoint:
-          process.env.CONVEX_SITE_URL + "/oauth/authorize",
+          process.env.NEXT_PUBLIC_CONVEX_URL + "/oauth/authorize",
       }),
       {
         status: 200,
