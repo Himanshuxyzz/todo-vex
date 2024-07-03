@@ -1,5 +1,5 @@
 1:39:00 now starting frontend
-current - 2:31:00
+current - 2:54:20
 
 Next js + tailwind + shadcn -> frontend
 

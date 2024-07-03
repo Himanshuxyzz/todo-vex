@@ -6,6 +6,7 @@ import Task from "./task";
 import { CircleCheckBig } from "lucide-react";
 import Todos from "./todos";
 import CompletedTodos from "./completed-todos";
+import { AddTaskWrapper } from "../add-tasks/add-task-button";
 
 const TodoList = () => {
   const todos = useQuery(api.todos.get) ?? [];
@@ -25,6 +26,11 @@ const TodoList = () => {
       <div className="flex items-center justify-between">
         <h1 className="font-semibold text-lg md:text-2xl">Inbox</h1>
       </div>
+
+      <div className="flex flex-col gap-1 py-4">
+        <AddTaskWrapper />
+      </div>
+
       <div className="flex flex-col gap-1 py-4">
         <Todos items={incompleteTodos} />
       </div>

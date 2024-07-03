@@ -76,7 +76,7 @@ const todosSchema = {
   projectId: v.id("projects"),
   labelId: v.id("labels"),
   taskName: v.string(),
-  descripton: v.optional(v.string()),
+  description: v.optional(v.string()),
   // dueDate: v.string(), it will be a unix apoc time
   dueDate: v.number(),
   priority: v.optional(v.float64()),
