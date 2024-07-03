@@ -48,3 +48,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
   },
 });
+
+declare module "next-auth" {
+  interface Session {
+    convexToken: string;
+  }
+}

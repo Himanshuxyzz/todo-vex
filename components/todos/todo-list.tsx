@@ -48,14 +48,15 @@ export default TodoList;
 /*
 [
   {
-    descripton: "had to complete this so that i can make next project",
+    description: "had to complete this so that i can make next project",
     dueDate: 0,
     isCompleted: false,
     labelId: "k57a7m1yvmdq9d6k3d8s2pg6ys6vks14",
-    priority: 0,
+    priority: 1,
     projectId: "k97aj3nnrrkgrwpyhfb0cjsdz16vjyne",
     taskName: "Complete the project tutorial",
     userId: "jn715rjhjjf4e61z5dywbrhkfn6vhz7m",
   },
+  
 ]
 */
